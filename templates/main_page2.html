@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		form.f1{
+			float: right;
+			margin-bottom: 40px;
+		}
+		body{
+			background-color: #b3ffeb;
+		}
+		div.d2{
+			
+			margin: 30px;
+			padding: 20px;
+			background-color: #f2f2f2;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		
+
+	</style>
+</head>
+<body>
+	
+<div class="d2">
+	<form action="/question1" method="POST">	
+		<b>Question:</b><br>
+		<br>
+		<textarea name="question"dirname="explanation.dir" rows="4" cols="50" oninvalid="alert('You must fill out the form!');" name="question" required id="q1"></textarea><br><br>
+		<b>Option 1:</b>
+		<input type="text" name="option1" oninvalid="alert('You must fill out the form!');" name="option1" required>
+		<b>Option 2:</b>
+		<input type="text" name="option2" oninvalid="alert('You must fill out the form!');" name="option2" required><br><br>
+		<b>Option 3:</b>
+		<input type="text" name="option3" oninvalid="alert('You must fill out the form!');" name="option3" required>
+		<b>Option 4:</b>
+		<input type="text" name="option4" oninvalid="alert('You must fill out the form!');" name="option4" required><br><br>
+		<b>Ans:</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="text" name="answer"oninvalid="alert('You must fill out the form!');" name="answer" required>&nbsp&nbsp&nbsp&nbsp
+		<input type="submit" >
+	</form>
+	<p style="text-align: center;font-size: 20px"><b>or</b></p>
+	<form action="/fileupload" method="POST" style="margin-top: 20px">
+		<input type="file" name="files" accept=".csv" style="background-color: white;box-shadow: 2px 2px #004d38;">
+		<input type="submit" name="import">
+</form>
+</div>
+</body>
+</html>

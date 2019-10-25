@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LogIn</title>
+	<style type="text/css">
+		p.p1{
+			text-align: left;
+			font-size: 30px;
+			margin-left: 20px;
+			margin-top: 40px;
+		}
+		div{
+			margin: 20px;
+			width: 60%;
+			height: 300px;
+			padding: 20px;
+			background-color: #f2f2f2;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		p.p2,a{
+			font-size: 15px;
+			margin-left: 20px
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p class="p1">Login</p>
+		<form action="/login" method="POST">
+			Email ID:
+			<input type="email" name="email"><br><br>
+			Password:
+			<input type="password" name="password"><br><br>
+			<input type="submit">
+		</form>
+	</div>
+	
+	<p class="p2">Don't have account<a href="/creation">Sign Up</a></p>
+</body>
+</html>

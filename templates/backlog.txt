@@ -1,0 +1,9 @@
+working :
+1.to end the loop of questions.
+2.to count the score and display it.
+3.can a redirect function call 2 app.route()
+
+to work :
+1.a import button to import the file of question.
+2.sign up and login.
+3.
