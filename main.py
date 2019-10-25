@@ -48,7 +48,7 @@ def quizgame():
 				Database.insert_quest(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
 			return redirect('/main_page2')
 		except Error as e:
-			return raise e
+			print("Error occure",e)
 	#It is the starting page of the application.
 	@app.route('/starting')
 	def starting():
@@ -56,13 +56,13 @@ def quizgame():
 		i=0
 		score=1
 		return render_template('starting_page.html')
-'''
-This part is to show question and record the response.
+	'''
+	This part is to show question and record the response.
 
-process the response and show the score.
+	process the response and show the score.
 
-'''
-#It will loop the question again and again.
+	'''
+	#It will loop the question again and again.
 	@app.route('/main_page1')
 	def main_page1():
 		# It call the database's question list from databases.
@@ -84,7 +84,7 @@ process the response and show the score.
 				# If the loop ends then it will shows the end page. 
 				return render_template('test.html',score=score) 
 		except Exception as e:
-			raise e
+			print("Error occure",e)
 
 
 	global score
@@ -106,7 +106,7 @@ process the response and show the score.
 				score=score+1
 			return redirect('/showquest')
 		except Exception as e:
-			raise e
+			print("Error occure",e)
 
 	# This function receive the question from user.  
 	@app.route('/question1',methods=['POST'])
@@ -123,12 +123,12 @@ process the response and show the score.
 		option1,option2,option3,option4,answer)
 		return redirect('/main_page2')
 
-'''
-To create a sign up UI for user.
-
-This will store the user info for short time.
-'''
-# Shows to create a sign up page
+	'''
+	To create a sign up UI for user.
+	
+	This will store the user info for short time.
+	'''
+	# Shows to create a sign up page
 	@app.route('/creation')
 	def creation():
 		return render_template('Acc_creation.html')
