@@ -156,3 +156,4 @@ def quizgame():
 	# To start the Application.
 	if __name__=='__main__':
 		app.run(debug="true")
+quizgame()
