@@ -1,1 +1,1 @@
-web: gunicorn quizgame.wsgi --log-file -
+web: gunicorn wsgi:app 
