@@ -7,13 +7,13 @@ This is to store the user account and quiz_game's quiz.
 '''
 from flask import Flask,request,url_for,render_template,redirect
 #import database to use the database.
-import Database
+import Database1
 import time
 import pdb
+import os
 def quizgame():
 	#This is to start the main aplication
 	app=Flask(__name__)
-	i=0
 	j=0
 	@app.route('/')
 	def main():
@@ -38,23 +38,23 @@ def quizgame():
 # To import the question direct by .csv files.
 	@app.route('/fileupload',methods=['POST'])
 	def fileupload():
-		try:
-			qfile=request.form['files']
-			dfile=open(qfile,"r").read().split('\n')
-			m=[]
-			for x in range(len(dfile)):
-				m.append(dfile[x].split(', '))
-			for x in range(len(m)):
-				Database.insert_quest(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
-			return redirect('/main_page2')
-		except Error as e:
-			print("Error occure",e)
+		questfile=request.files['files']
+		questfile.save(os.path.join(app.config["image_upload"],questfile.filename))
+		dfile=open(questfile.filename,"r").read().split('\n')
+		m=[]
+		for x in range(len(dfile)):
+			m.append(dfile[x].split(' , '))
+		print(m)
+		for x in range(len(m)):
+			print(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
+			Database1.insert_quest(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
+		return redirect('/main_page2')
 	#It is the starting page of the application.
 	@app.route('/starting')
 	def starting():
-		global i,score
+		global score,i
 		i=0
-		score=1
+		score=0
 		return render_template('starting_page.html')
 	'''
 	This part is to show question and record the response.
@@ -66,8 +66,7 @@ def quizgame():
 	@app.route('/main_page1')
 	def main_page1():
 		# It call the database's question list from databases.
-		try:
-			question2=Database.showquest(i)
+			question2=Database1.showquest(i)
 			#To end the loop.
 			if question2 !=0:
 				z=question2[0]
@@ -83,13 +82,9 @@ def quizgame():
 			else:
 				# If the loop ends then it will shows the end page. 
 				return render_template('test.html',score=score) 
-		except Exception as e:
-			print("Error occure",e)
-
-
+		
 	global score
 	score=1
-
 	# It will loop the question.
 	@app.route('/showquest')
 	def showquest():
@@ -100,14 +95,10 @@ def quizgame():
 	# Count the score of User.
 	@app.route('/score1/<z>/<m>')
 	def score1(z,m):
-		try:
 			if z==m:
 				global score
 				score=score+1
 			return redirect('/showquest')
-		except Exception as e:
-			print("Error occure",e)
-
 	# This function receive the question from user.  
 	@app.route('/question1',methods=['POST'])
 	def question():
@@ -119,7 +110,7 @@ def quizgame():
 		option4=request.form['option4']
 		answer=request.form['answer']
 		# Insert the question in database.
-		Database.insert_quest(question,\
+		Database1.insert_quest(question,\
 		option1,option2,option3,option4,answer)
 		return redirect('/main_page2')
 
@@ -141,7 +132,7 @@ def quizgame():
 		email=request.form['email']
 		password=request.form['password']
 		# It insert into database.
-		Database.insert_acc(first,last,email,password)
+		Database1.insert_acc(first,last,email,password)
 		return redirect('/login')
 	#To login
 	@app.route('/login')
@@ -153,6 +144,9 @@ def quizgame():
 		password=request.form['password']
 		return redirect('/starting')
 
+	currentdirec=os.getcwd()
+	app.config["image_upload"]="F:\Python\MyQuiz Game"
 	# To start the Application.
 	if __name__=='__main__':
 		app.run(debug="true")
+quizgame()
