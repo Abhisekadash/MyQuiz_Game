@@ -90,6 +90,7 @@ def showquest():
 def score1(z,m):
 		if z==m:
 			global score
+			
 			score=score+1
 		return redirect('/showquest')
 # This function receive the question from user.  
