@@ -1,3 +1,3 @@
-from main import quizgame
+import main
 
 app=main.quizgame()
