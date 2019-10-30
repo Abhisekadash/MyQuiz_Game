@@ -38,7 +38,7 @@ def display_quest():
 def showquest(i):
 	mylist1=display_quest()
 	if len(mylist1)!=i:
-		logging.info("=============",i,"=================")
+		logging.error("=============",i,"=================")
 		return mylist1[i]
 	else:
 		return 0
