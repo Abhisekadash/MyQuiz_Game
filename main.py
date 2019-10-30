@@ -49,7 +49,7 @@ def fileupload():
 #It is the starting page of the application.
 @app.route('/starting')
 def starting():
-	global score,i
+	global i,score
 	i=0
 	score=0
 	return render_template('starting_page.html')
@@ -61,7 +61,6 @@ This part is to show question and record the response.
 @app.route('/main_page1')
 def main_page1():
 	# It call the database's question list from databases.
-	global i
 	question2=Database1.showquest(i)
 	#To end the loop.
 	if question2 !=0:
@@ -79,7 +78,8 @@ def main_page1():
 		# If the loop ends then it will shows the end page. 
 		return render_template('test.html',score=score) 
 	
-global score
+global score,i
+i=0
 score=1
 # It will loop the question.
 @app.route('/showquest')
