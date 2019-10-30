@@ -84,7 +84,6 @@ score=1
 # It will loop the question.
 @app.route('/showquest')
 def showquest():
-	global i
 	i+=1
 	return redirect('/main_page1')
 	# Count the score of User.
