@@ -16,6 +16,7 @@ import os
 #This is to start the main aplication
 app=Flask(__name__)
 j=0
+global score,i
 @app.route('/')
 def main():
 	return render_template('main.html')
@@ -78,10 +79,6 @@ def main_page1():
 	else:
 		# If the loop ends then it will shows the end page. 
 		return render_template('test.html',score=score) 
-	
-global score,i
-i=0
-score=1
 # It will loop the question.
 @app.route('/showquest')
 def showquest():
