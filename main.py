@@ -11,7 +11,7 @@ import Database1
 import time
 import pdb
 import os
-def quizgame():
+def quizgame(config_file=setting.py):
 	#This is to start the main aplication
 	app=Flask(__name__)
 	j=0
