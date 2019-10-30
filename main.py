@@ -61,7 +61,6 @@ This part is to show question and record the response.
 @app.route('/main_page1')
 def main_page1():
 	# It call the database's question list from databases.
-	print(i)
 	question2=Database1.showquest(i)
 	#To end the loop.
 	if question2 !=0:
