@@ -12,9 +12,12 @@ import setting
 import time
 import pdb
 import os
+
+app=Flask(__name__)
+
 def quizgame(config_file=setting):
 	#This is to start the main aplication
-	app=Flask(__name__)
+	
 	j=0
 	@app.route('/')
 	def main():
@@ -148,5 +151,5 @@ def quizgame(config_file=setting):
 	currentdirec=os.getcwd()
 	app.config["image_upload"]="F:\Python\MyQuiz Game"
 	# To start the Application.
-	if __name__=='__main__':
-		app.run(debug="true")
+if __name__=='__main__':
+	app.run(debug="true")
