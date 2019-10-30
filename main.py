@@ -61,7 +61,7 @@ This part is to show question and record the response.
 @app.route('/main_page1')
 def main_page1():
 	# It call the database's question list from databases.
-	question2=Database1.showquest(incre())
+	question2=Database1.showquest(i)
 	#To end the loop.
 	if question2 !=0:
 		z=question2[0]
@@ -78,17 +78,16 @@ def main_page1():
 		# If the loop ends then it will shows the end page. 
 		return render_template('test.html',score=score) 
 	
+global score,i
+i=0
+score=1
 # It will loop the question.
 @app.route('/showquest')
 def showquest():
 	global i
-	i=incre()
 	i+=1
 	return redirect('/main_page1')
 	# Count the score of User.
-def incre():
-	global i
-	return i
 @app.route('/score1/<z>/<m>')
 def score1(z,m):
 		if z==m:
