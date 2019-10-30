@@ -1,4 +1,5 @@
 import psycopg2
+import logging
 conn = psycopg2.connect(
 database="d2j8ncse346lns",
 user = "yriywxkxtklqar",
@@ -37,6 +38,7 @@ def display_quest():
 def showquest(i):
 	mylist1=display_quest()
 	if len(mylist1)!=i:
+		logging.info(i)
 		return mylist1[i]
 	else:
 		return 0
