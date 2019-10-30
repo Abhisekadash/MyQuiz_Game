@@ -88,7 +88,6 @@ def showquest():
 	# Count the score of User.
 def incre():
 	global i
-	print(i)
 	return i
 @app.route('/score1/<z>/<m>')
 def score1(z,m):
