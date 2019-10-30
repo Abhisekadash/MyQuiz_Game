@@ -136,7 +136,8 @@ def auth():
 	password=request.form['password']
 	return redirect('/starting')
 	currentdirec=os.getcwd()
-app.config["image_upload"]="F:\Python\MyQuiz Game"
+fileloc=os.getcwd()
+app.config["image_upload"]=fileloc
 # To start the Application.
 if __name__=='__main__':
 	app.run(debug="true")
