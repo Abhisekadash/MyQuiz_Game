@@ -139,4 +139,4 @@ def auth():
 app.config["image_upload"]="F:\Python\MyQuiz Game"
 # To start the Application.
 if __name__=='__main__':
-		app.run(debug="true")
+	app.run(debug="true")
