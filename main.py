@@ -8,6 +8,7 @@ This is to store the user account and quiz_game's quiz.
 from flask import Flask,request,url_for,render_template,redirect
 #import database to use the database.
 import Database1
+import setting
 import time
 import pdb
 import os
