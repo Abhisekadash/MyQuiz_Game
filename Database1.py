@@ -2,7 +2,7 @@ import psycopg2
 conn = psycopg2.connect(
 database="d2j8ncse346lns",
 user = "yriywxkxtklqar",
-password = "chiku123",
+password = "b1903aed1d43f99f0afc8975190147390f805e061e824beb4ba4a106316e78dc",
 host = "ec2-54-197-238-238.compute-1.amazonaws.com",
 port = "5432")
 mycursor=conn.cursor()
