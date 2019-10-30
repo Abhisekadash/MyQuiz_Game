@@ -1,7 +1,7 @@
 import psycopg2
 conn = psycopg2.connect(
-database="myquiz",
-user = "postgres",
+database="d2j8ncse346lns",
+user = "yriywxkxtklqar",
 password = "chiku123",
 host = "ec2-54-197-238-238.compute-1.amazonaws.com",
 port = "5432")
