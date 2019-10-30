@@ -37,6 +37,7 @@ def display_quest():
 def showquest(i):
 	mylist1=display_quest()
 	if len(mylist1)!=i:
+		print(i)
 		return mylist1[i]
 	else:
 		return 0
