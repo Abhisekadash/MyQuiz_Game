@@ -68,15 +68,15 @@ function change() {
 			<p>Q.   {% print(a) %}</p>
 <table>
 	<tr>
-		<td>1.<a href="{{url_for('score1',z=b,m=f)}}">{% print(b) %}</a></td>
-		<td>2.<a href="{{url_for('score1',z=c,m=f)}}">{% print(c) %}</a></td>
+		<td>1.<a href="{{url_for('score1',z=b,m=f,i=i,score=score)}}">{% print(b) %}</a></td>
+		<td>2.<a href="{{url_for('score1',z=c,m=f,i=i,score=score)}}">{% print(c) %}</a></td>
 	</tr>
 	<tr>
-		<td>3.<a href="{{url_for('score1',z=d,m=f)}}">{% print(d) %}</a></td>
-		<td>4.<a href="{{url_for('score1',z=e,m=f)}}">{% print(e) %}</a></td>
+		<td>3.<a href="{{url_for('score1',z=d,m=f,i=i,score=score)}}">{% print(d) %}</a></td>
+		<td>4.<a href="{{url_for('score1',z=e,m=f,i=i,score=score)}}">{% print(e) %}</a></td>
 	</tr>
 		
 </table><p id="Answer"style="display: none;">Ans:{% print(f) %}</p>
-		<a href="{{url_for('showquest')}}" id="new"></a>
+		<a href="{{url_for('showquest',i=i,score=score)}}" id="new"></a>
 </body>
 </html>

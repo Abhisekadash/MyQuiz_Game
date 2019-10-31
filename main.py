@@ -15,8 +15,6 @@ import os
 
 #This is to start the main aplication
 app=Flask(__name__)
-j=0
-global score,i
 @app.route('/')
 def main():
 	return render_template('main.html')
@@ -33,6 +31,11 @@ def main_page():
 @app.route('/main_page2')
 def main_page2():
 	return render_template('main_page2.html')
+
+def increquest():
+	i=0
+	score=0
+	return i,score
 # To import the question direct by .csv files.
 @app.route('/fileupload',methods=['POST'])
 def fileupload():
@@ -50,19 +53,17 @@ def fileupload():
 #It is the starting page of the application.
 @app.route('/starting')
 def starting():
-	global i,score
-	i=0
-	score=0
-	return render_template('starting_page.html')
+	i,score=increquest()
+	return render_template('starting_page.html',i=i,score=score)
 '''
 This part is to show question and record the response.
 	process the response and show the score.
 	'''
 #It will loop the question again and again.
-@app.route('/main_page1')
-def main_page1():
+@app.route('/main_page1',defaults={'i':0,'score':0})
+@app.route('/main_page1/<int:i>/<int:score>')
+def main_page1(i,score):
 	# It call the database's question list from databases.
-	global i
 	question2=Database1.showquest(i)
 	#To end the loop.
 	if question2 !=0:
@@ -75,23 +76,21 @@ def main_page1():
 		f=question2[6]
 		# It will show and pass the values to html page.
 		return render_template('main_page1.html',\
-			a=a,b=b,c=c,d=d,e=e,f=f)
+			a=a,b=b,c=c,d=d,e=e,f=f,i=i,score=score)
 	else:
 		# If the loop ends then it will shows the end page. 
 		return render_template('test.html',score=score) 
 # It will loop the question.
-@app.route('/showquest')
-def showquest():
-	global i
+@app.route('/showquest/<int:i>/<int:score>')
+def showquest(i,score):
 	i+=1
-	return redirect('/main_page1')
+	return redirect(url_for('main_page1',i=i,score=score))
 	# Count the score of User.
-@app.route('/score1/<z>/<m>')
-def score1(z,m):
+@app.route('/score1/<z>/<m>/<int:i>/<int:score>')
+def score1(z,m,i,score):
 		if z==m:
-			global score
 			score=score+1
-		return redirect('/showquest')
+		return redirect(url_for('showquest',i=i,score=score))
 # This function receive the question from user.  
 @app.route('/question1',methods=['POST'])
 def question():
