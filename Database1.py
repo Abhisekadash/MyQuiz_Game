@@ -29,6 +29,7 @@ print(m)
 def insert_quest(question,option1,option2,option3,option4,answer):
 	sql="insert into question(id,question,option1,option2,option3,\
 	option4,answer)values (%s,%s,%s,%s,%s,%s,%s)"
+	global k
 	k=k+1
 	val=(k,question,option1,option2,option3,option4,answer)
 	if question in m:
