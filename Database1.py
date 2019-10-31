@@ -18,12 +18,24 @@ def insert_acc(First,last,email,password):
 		raise e
 	conn.commit()
 # insert_items() for insert elements.
+m=[]
+k=1
+mycursor.execute("select * from question")
+mylist=mycursor.fetchall()
+for x in mylist:
+		m.append(x[1])
+		k=x[0]
+print(m)
 def insert_quest(question,option1,option2,option3,option4,answer):
-	sql="insert into question(question,option1,option2,option3,\
-	option4,answer)values (%s,%s,%s,%s,%s,%s)"
-	val=(question,option1,option2,option3,option4,answer)
-	mycursor.execute(sql,val)
-	conn.commit()
+	sql="insert into question(id,question,option1,option2,option3,\
+	option4,answer)values (%s,%s,%s,%s,%s,%s,%s)"
+	k=k+1
+	val=(k,question,option1,option2,option3,option4,answer)
+	if question in m:
+		print("--------Already have that-----")
+	else:
+		mycursor.execute(sql,val)
+		conn.commit()
 '''
  To display the item and item status.
 

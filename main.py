@@ -79,7 +79,7 @@ def main_page1(i,score):
 			a=a,b=b,c=c,d=d,e=e,f=f,i=i,score=score)
 	else:
 		# If the loop ends then it will shows the end page. 
-		return render_template('test.html',score=score) 
+		return render_template('test.html',score=score)
 # It will loop the question.
 @app.route('/showquest/<int:i>/<int:score>')
 def showquest(i,score):
