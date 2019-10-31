@@ -45,9 +45,7 @@ def fileupload():
 	m=[]
 	for x in range(len(dfile)):
 		m.append(dfile[x].split(' , '))
-	print(m)
 	for x in range(len(m)):
-		print(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
 		Database1.insert_quest(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
 	return redirect('/main_page2')
 #It is the starting page of the application.
@@ -83,14 +81,17 @@ def main_page1(i,score):
 # It will loop the question.
 @app.route('/showquest/<int:i>/<int:score>')
 def showquest(i,score):
-	i+=1
-	return redirect(url_for('main_page1',i=i,score=score))
+	if i!=255545:
+		i+=1
+		return redirect(url_for('main_page1',i=i,score=score))
+	else:
+		return render_template('test.html',score=score)
 	# Count the score of User.
 @app.route('/score1/<z>/<m>/<int:i>/<int:score>')
 def score1(z,m,i,score):
-		if z==m:
-			score=score+1
-		return redirect(url_for('showquest',i=i,score=score))
+	if z==m:
+		score=score+1
+	return redirect(url_for('showquest',i=i,score=score))
 # This function receive the question from user.  
 @app.route('/question1',methods=['POST'])
 def question():

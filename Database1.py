@@ -25,7 +25,6 @@ mylist=mycursor.fetchall()
 for x in mylist:
 		m.append(x[1])
 		k=x[0]
-print(m)
 def insert_quest(question,option1,option2,option3,option4,answer):
 	sql="insert into question(id,question,option1,option2,option3,\
 	option4,answer)values (%s,%s,%s,%s,%s,%s,%s)"
