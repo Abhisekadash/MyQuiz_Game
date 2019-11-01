@@ -48,7 +48,7 @@ def fileupload():
 	try:
 		if os.path.getsize(data)>0:
 			for x in range(len(data)):
-				m.append(dfile[x].split(' , '))
+				m.append(data[x].split(' , '))
 		else:
 			return "<p style='font-size:30px'>You inserted a  blank file.</p>"
 	except:
