@@ -43,11 +43,24 @@ def fileupload():
 	questfile.save(os.path.join(app.config["image_upload"],questfile.filename))
 	dfile=open(questfile.filename,"r").read().split('\n')
 	m=[]
-	for x in range(len(dfile)):
-		m.append(dfile[x].split(' , '))
+	try:
+		if len(dfile)>1:
+			for x in range(len(dfile)):
+				m.append(dfile[x].split(' , '))
+		else:
+			return "<p style='font-size:30px'>You inserted a  blank file.</p>"
+	except:
+		return "<p style='font-size:30px;'>It's a blank file.\
+		Please upload afile with content</p>"
+	count=0
 	for x in range(len(m)):
-		Database1.insert_quest(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
+		print(x)
+		if len(m[x])==6:
+			Database1.insert_quest(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
+		else:
+			return f"<p style='font-size:30px'>Missing parameter in line {x}</p>"
 	return redirect('/main_page2')
+	
 #It is the starting page of the application.
 @app.route('/starting')
 def starting():
@@ -102,10 +115,17 @@ def question():
 	option3=request.form['option3']
 	option4=request.form['option4']
 	answer=request.form['answer']
-	# Insert the question in database.
-	Database1.insert_quest(question,\
-	option1,option2,option3,option4,answer)
-	return redirect('/main_page2')
+	try:
+		if question.isalnum() and option1.isalnum() and option2.isalnum()\
+		 and option3.isalnum() and option4.isalnum() and answer.isalnum():
+			# Insert the question in database.
+			Database1.insert_quest(question,\
+			option1,option2,option3,option4,answer)
+			return redirect('/main_page2')
+		else:
+			return "<p style='font-size:30px'>Insert a correct data.</p>"
+	except:
+		return "<p style='font-size:40px'>Insert a full content</p>"
 	'''
 To create a sign up UI for user.
 
