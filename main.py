@@ -15,13 +15,10 @@ import os
 
 #This is to start the main aplication
 app=Flask(__name__)
-
-# Main UI of application.
 @app.route('/')
 def main():
 	return render_template('main.html')
-
-# Head part of UI.
+	# Head part of UI.
 @app.route('/heading')
 def heading():
 	return render_template('heading.html')
@@ -34,32 +31,32 @@ def main_page():
 @app.route('/main_page2')
 def main_page2():
 	return render_template('main_page2.html')
-# Starting of score and question increment value
+
 def increquest():
 	i=0
 	score=0
 	return i,score
-
 # To import the question direct by .csv files.
 @app.route('/fileupload',methods=['POST'])
 def fileupload():
 	questfile=request.files['files']
-	# Save the file in server.
 	questfile.save(os.path.join(app.config["image_upload"],questfile.filename))
-	# Open and read the file.
-	dfile=open(questfile.filename,"r").read().strip()
-	data=dfile.split('\n')
-	print(data)
+	dfile=open(questfile.filename,"r").read().split('\n')
+	data=dfile.strip()
 	m=[]
 	#Try exxcept block to handle exception.
-	if dfile[0] is not None:
-		for x in range(len(data)):
-			print(x)
-			m.append(data[x].split(' , '))
-	else:
-		return "<p style='font-size:30px'>You inserted a  blank file.</p>"
-	print(m)
+	try:
+		if os.path.getsize(dfile)>0:
+			for x in range(len(dfile)):
+				m.append(dfile[x].split(' , '))
+		else:
+			return "<p style='font-size:30px'>You inserted a  blank file.</p>"
+	except:
+		return "<p style='font-size:30px;'>It's a blank file.\
+		Please upload afile with content</p>"
+	count=0
 	for x in range(len(m)):
+		print(x)
 		if len(m[x])==6:
 			Database1.insert_quest(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
 		else:
@@ -75,7 +72,6 @@ def starting():
 This part is to show question and record the response.
 	process the response and show the score.
 	'''
-
 #It will loop the question again and again.
 @app.route('/main_page1',defaults={'i':0,'score':0})
 @app.route('/main_page1/<int:i>/<int:score>')
@@ -102,8 +98,6 @@ def main_page1(i,score):
 def showquest(i,score):
 	i+=1
 	return redirect(url_for('main_page1',i=i,score=score))
-
-# End of game and count score.
 @app.route('/end/<int:i>/<int:score>')
 def end(i,score):
 	return render_template('test.html',score=score,i=i)
@@ -114,7 +108,6 @@ def score1(z,m,i,score):
 	if z==m:
 		score=score+1
 	return redirect(url_for('showquest',i=i,score=score))
-
 # This function receive the question from user.  
 @app.route('/question1',methods=['POST'])
 def question():
@@ -125,12 +118,17 @@ def question():
 	option3=request.form['option3']
 	option4=request.form['option4']
 	answer=request.form['answer']
-	# Insert the question in database.
-	Database1.insert_quest(question,\
-	option1,option2,option3,option4,answer)
-	return redirect('/main_page2')
-#	except:
-#		return "<p style='font-size:40px'>Insert a full content</p>"
+	try:
+		if question.isalnum() and option1.isalnum() and option2.isalnum()\
+		 and option3.isalnum() and option4.isalnum() and answer.isalnum():
+			# Insert the question in database.
+			Database1.insert_quest(question,\
+			option1,option2,option3,option4,answer)
+			return redirect('/main_page2')
+		else:
+			return "<p style='font-size:30px'>Insert a correct data.</p>"
+	except:
+		return "<p style='font-size:40px'>Insert a full content</p>"
 	'''
 To create a sign up UI for user.
 
@@ -140,8 +138,7 @@ This will store the user info for short time.
 @app.route('/creation')
 def creation():
 	return render_template('Acc_creation.html')
-
-# It's insert the information of user.
+	# It's insert the information of user.
 @app.route('/create',methods=['POST'])
 def create():
 	first=request.form['firstname']
@@ -151,21 +148,18 @@ def create():
 	# It insert into database.
 	Database1.insert_acc(first,last,email,password)
 	return redirect('/login')
-
 #To login
 @app.route('/login')
 def login():
 	return render_template('login.html')
-
 @app.route('/auth',methods=['POST'])
 def auth():
 	email=request.form['email']
 	password=request.form['password']
 	return redirect('/starting')
-currentdirec=os.getcwd()
+	currentdirec=os.getcwd()
 fileloc=os.getcwd()
 app.config["image_upload"]=fileloc
-
 # To start the Application.
 if __name__=='__main__':
 	app.run(debug="true")

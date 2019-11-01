@@ -1,5 +1,6 @@
 import psycopg2
 import logging
+import random
 
 def get_connection_and_cursor():
     conn = psycopg2.connect(
@@ -51,17 +52,20 @@ def insert_quest(question,option1,option2,option3,option4,answer):
  It loop through the database.
 
 '''
+
+
 def display_quest():
 	conn,mycursor=get_connection_and_cursor()
 	mycursor.execute("select * from question")
 	mylist=mycursor.fetchall()
 	return mylist
 
+mylist=display_quest()
+random.shuffle(mylist)
+print(mylist)
 def showquest(i):
-	conn,mycursor=get_connection_and_cursor()
-	mylist1=display_quest()
-	if len(mylist1)!=i:
-		logging.error("=============",i,"=================")
-		return mylist1[i]
+	global mylist
+	if len(mylist)!=i:
+		return mylist[i]
 	else:
 		return 0
