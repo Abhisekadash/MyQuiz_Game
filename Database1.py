@@ -43,7 +43,7 @@ def insert_quest(question,option1,option2,option3,option4,answer):
 		k=k+1
 		val=(k,question,option1,option2,option3,option4,answer)
 		mycursor.execute(sql,val)
-		logging.info("Insert Successfully")
+		logging.error("-------Insert Successfully------")
 		conn.commit()
 '''
  To display the item and item status.
