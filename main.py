@@ -41,13 +41,13 @@ def increquest():
 def fileupload():
 	questfile=request.files['files']
 	questfile.save(os.path.join(app.config["image_upload"],questfile.filename))
-	dfile=open(questfile.filename,"r").read().split('\n')
-	data=dfile.strip()
+	dfile=open(questfile.filename,"r").read().strip()
+	data=dfile.split('\n')
 	m=[]
 	#Try exxcept block to handle exception.
 	try:
-		if os.path.getsize(dfile)>0:
-			for x in range(len(dfile)):
+		if os.path.getsize(data)>0:
+			for x in range(len(data)):
 				m.append(dfile[x].split(' , '))
 		else:
 			return "<p style='font-size:30px'>You inserted a  blank file.</p>"
