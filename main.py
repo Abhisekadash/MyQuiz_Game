@@ -11,6 +11,7 @@ import Database1
 import setting
 import time
 import pdb
+import logging
 import os
 
 #This is to start the main aplication
@@ -47,6 +48,7 @@ def fileupload():
 	#Try exxcept block to handle exception.
 	try:
 		if os.path.getsize(data)>0:
+			logging.error("Passing First phase")
 			for x in range(len(data)):
 				m.append(data[x].split(' , '))
 		else:
