@@ -47,16 +47,17 @@ def fileupload():
 	# Save the file in server.
 	questfile.save(os.path.join(app.config["image_upload"],questfile.filename))
 	# Open and read the file.
-	dfile=open(questfile.filename,"r").read().split('\n')
-	print(dfile)
+	dfile=open(questfile.filename,"r").read().strip()
+	data=dfile.split('\n')
+	print(data)
 	m=[]
 	#Try exxcept block to handle exception.
 	if dfile[0] is not None:
-		for x in range(len(dfile)):
-			m.append(dfile[x].split(' , '))
+		for x in range(len(data)):
+			print(x)
+			m.append(data[x].split(' , '))
 	else:
 		return "<p style='font-size:30px'>You inserted a  blank file.</p>"
-	count=0
 	print(m)
 	for x in range(len(m)):
 		if len(m[x])==6:
