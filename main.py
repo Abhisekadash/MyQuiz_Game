@@ -43,6 +43,7 @@ def fileupload():
 	questfile.save(os.path.join(app.config["image_upload"],questfile.filename))
 	dfile=open(questfile.filename,"r").read().split('\n')
 	m=[]
+	#Try exxcept block to handle exception.
 	try:
 		if len(dfile)>1:
 			for x in range(len(dfile)):
@@ -90,16 +91,17 @@ def main_page1(i,score):
 			a=a,b=b,c=c,d=d,e=e,f=f,i=i,score=score)
 	else:
 		# If the loop ends then it will shows the end page. 
-		return render_template('test.html',score=score)
+		return render_template('test.html',score=score,i=i)
 # It will loop the question.
 @app.route('/showquest/<int:i>/<int:score>')
 def showquest(i,score):
-	if i!=255545:
-		i+=1
-		return redirect(url_for('main_page1',i=i,score=score))
-	else:
-		return render_template('test.html',score=score)
-	# Count the score of User.
+	i+=1
+	return redirect(url_for('main_page1',i=i,score=score))
+@app.route('/end/<int:i>/<int:score>')
+def end(i,score):
+	return render_template('test.html',score=score,i=i)
+
+# Count the score of User.
 @app.route('/score1/<z>/<m>/<int:i>/<int:score>')
 def score1(z,m,i,score):
 	if z==m:
