@@ -11,7 +11,6 @@ import Database1
 import setting
 import time
 import pdb
-import logging
 import os
 
 #This is to start the main aplication
@@ -47,8 +46,7 @@ def fileupload():
 	m=[]
 	#Try exxcept block to handle exception.
 	try:
-		if os.path.getsize(data)>0:
-			logging.error("Passing First phase")
+		if len(data[0])>0:
 			for x in range(len(data)):
 				m.append(data[x].split(' , '))
 		else:
@@ -58,7 +56,6 @@ def fileupload():
 		Please upload afile with content</p>"
 	count=0
 	for x in range(len(m)):
-		print(x)
 		if len(m[x])==6:
 			Database1.insert_quest(m[x][0],m[x][1],m[x][2],m[x][3],m[x][4],m[x][5])
 		else:

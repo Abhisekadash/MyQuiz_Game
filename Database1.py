@@ -37,7 +37,6 @@ def insert_quest(question,option1,option2,option3,option4,answer):
 	for x in mylist:
 		m.append(x[1])
 		k=x[0]
-	print(k)
 	if question in m:
 		logging.error("--------Already have that-----")
 	else:
@@ -53,7 +52,6 @@ def insert_quest(question,option1,option2,option3,option4,answer):
 
 '''
 
-
 def display_quest():
 	conn,mycursor=get_connection_and_cursor()
 	mycursor.execute("select * from question")
@@ -62,7 +60,7 @@ def display_quest():
 
 mylist=display_quest()
 random.shuffle(mylist)
-print(mylist)
+
 def showquest(i):
 	global mylist
 	if len(mylist)!=i:
