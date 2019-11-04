@@ -8,7 +8,6 @@ This is to store the user account and quiz_game's quiz.
 from flask import Flask,request,url_for,render_template,redirect
 #import database to use the database.
 import Database1
-import setting
 import time
 import pdb
 import os
@@ -102,10 +101,9 @@ def end(i,score):
 	return render_template('test.html',score=score,i=i)
 
 # Count the score of User.
-@app.route('/score1/<z>/<m>/<int:i>/<int:score>')
-def score1(z,m,i,score):
-	if z==m:
-		score=score+1
+@app.route('/score1/<int:i>/<int:score>')
+def score1(i,score):
+	score=score+1
 	return redirect(url_for('showquest',i=i,score=score))
 # This function receive the question from user.  
 @app.route('/question1',methods=['POST'])

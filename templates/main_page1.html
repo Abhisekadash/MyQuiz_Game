@@ -4,7 +4,7 @@
 <script type="text/javascript">
 function showtime(){
 // Set the date we're counting down to
-  var countDownDate = new Date().getTime()+15000;
+  var countDownDate = new Date().getTime()+27000;
 // Update the count down every 1 second
 var x = setInterval(function() {
 
@@ -24,9 +24,13 @@ var x = setInterval(function() {
   	document.getElementById("demo").innerHTML ="0s"
   }
 }, 1000);
-mytime()
-function mytime() {
-	myVar = setTimeout(show, 11000);
+usefor()
+function usefor() {
+	myVar = setTimeout(change, 25000);
+}
+function change() {
+	document.getElementById("new").click();
+}
 }
 function show(){
 	var x = document.getElementById("Answer");
@@ -36,15 +40,38 @@ function show(){
     x.style.display = "none";
   }
 }
-usefor()
-function usefor() {
-	myVar = setTimeout(change, 15000);
-}
-function change() {
-	document.getElementById("new").click();
-}
-}
+var p=1;
+function checkiter(m){
+	
+	if (p==1){
+		p++
+		showans(m)
+	}
 
+}
+function showans(m){
+	var  z=document.getElementById('Answer').innerHTML;
+	var x=document.getElementById('Collering');
+	if(m == z){
+			document.getElementById('Collering').innerHTML="Correct Answer";
+			x.style.color="green";
+			show()
+			newfun()
+			
+	}
+	else{
+		document.getElementById("Collering").innerHTML="Wrong Answer";
+		x.style.color="red";
+		show()
+		newfun()
+	}
+}
+function newfun(){
+	myvar=myvar=setTimeout(newchange,3000);
+}
+function newchange(){
+	document.getElementById("a1").click();
+}
 	</script>
 <style type="text/css">
 	table{	
@@ -58,7 +85,12 @@ function change() {
 	}
 	p{
 		font-size: 20px
+
 	}
+	p.p2,p.p3,p.p4,p.p5{
+
+display: inline-block;
+}
 </style>
 </head>
 <body onload="showtime()">
@@ -68,16 +100,19 @@ function change() {
 			<p>Q.   {% print(a) %}</p>
 <table>
 	<tr>
-		<td>1.<a href="{{url_for('score1',z=b,m=f,i=i,score=score)}}">{% print(b) %}</a></td>
-		<td>2.<a href="{{url_for('score1',z=c,m=f,i=i,score=score)}}">{% print(c) %}</a></td>
+		<td><p class="p2">1.</p> <p class="p2" onclick="checkiter(document.getElementById('b').innerHTML)" id='b'>{% print(b) %}</p></td>
+		<td><p class="p3">2.</p> <p class="p3" onclick="checkiter(document.getElementById('c').innerHTML)"id='c'>{% print(c) %}</p></td>
 	</tr>
 	<tr>
-		<td>3.<a href="{{url_for('score1',z=d,m=f,i=i,score=score)}}">{% print(d) %}</a></td>
-		<td>4.<a href="{{url_for('score1',z=e,m=f,i=i,score=score)}}">{% print(e) %}</a></td>
+		<td><p class="p4">3.</p> <p class="p4" onclick="checkiter(document.getElementById('d').innerHTML)" id='d'>{% print(d) %}</p></td>
+		<td><p class="p5">4.</p> <p class="p5" onclick="checkiter(document.getElementById('e').innerHTML)" id="e" >{% print(e) %}</p></td>
 	</tr>
-		
-</table><p id="Answer"style="display: none;">Ans:{% print(f) %}</p>
+</table>
+<button onclick="show()"><b>Answer</b></button>
+<p id="Collering"></p>
+<p id="Answer" style="display: none;">{% print(f) %}</p>
 		<a href="{{url_for('showquest',i=i,score=score)}}" id="new"></a>
-<a href="{{url_for('end',i=i,score=score)}}" style="padding: 15px;background-color: grey;color: white; float: right;margin-top: 40px;">End</a>
-</body>
+		<a href="{{url_for('score1',i=i,score=score)}}" id="a1" ></a>
+		<a href="{{url_for('end',i=i,score=score)}}" style="font-size: 20px;float: right;">End</a>
+	</body>
 </html>
