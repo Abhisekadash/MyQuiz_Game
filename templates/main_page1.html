@@ -99,8 +99,9 @@ display: inline-block;
 </style>
 </head>
 <body onload="showtime()">
-	<p id="demo" style="float: right;font-size: 40px;margin-top: 1px" ><b></b></p>
-<p>Note: Click one from 1,2,3,4 to answer</p><br><br>
+	<a href="{{url_for('showquest',i=i,score=score)}}" style="font-size: 20px;float: right;box-shadow:2px 2px 2px 2px black;padding: 5px;">Next</a>
+	<p id="demo" style="float: right;font-size: 40px;margin-top: 1px;margin-top: 30px"><b></b></p>
+<p>Note: Click one from option 1,2,3,4 to answer</p><br><br>
 
 			<p>Q.   {% print(a) %}</p>
 <table>
@@ -117,7 +118,8 @@ display: inline-block;
 <p id="Collering"></p>
 <p id="Answer" style="display: none;">{% print(f) %}</p>
 		<a href="{{url_for('showquest',i=i,score=score)}}" id="new"></a>
+
 		<a href="{{url_for('score1',i=i,score=score)}}" id="a1" ></a>
-		<a href="{{url_for('end',i=i,score=score)}}" style="font-size: 20px;float: right;">End</a>
+		<a href="{{url_for('end',i=i,score=score)}}" style="font-size: 20px;float: right;box-shadow:2px 2px 2px 2px black;padding: 5px;">End</a>
 	</body>
 </html>
