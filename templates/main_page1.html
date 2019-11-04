@@ -56,18 +56,23 @@ function showans(m){
 			document.getElementById('Collering').innerHTML="Correct Answer";
 			x.style.color="green";
 			show()
-			newfun()
+			newfun('c')
 			
 	}
 	else{
 		document.getElementById("Collering").innerHTML="Wrong Answer";
 		x.style.color="red";
 		show()
-		newfun()
+		newfun('w')
 	}
 }
-function newfun(){
+function newfun(n){
+	if(n=='c'){
 	myvar=myvar=setTimeout(newchange,3000);
+	}
+	else{
+		document.getElementById("new").click();
+	}
 }
 function newchange(){
 	document.getElementById("a1").click();
