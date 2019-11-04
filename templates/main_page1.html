@@ -68,14 +68,17 @@ function showans(m){
 }
 function newfun(n){
 	if(n=='c'){
-	myvar=myvar=setTimeout(newchange,3000);
+	myvar=setTimeout(correctans,3000);
 	}
 	else{
-		document.getElementById("new").click();
+		myvar=setTimeout(wrongans,3000)	
 	}
 }
-function newchange(){
+function correctans(){
 	document.getElementById("a1").click();
+}
+function wrongans(){
+	document.getElementById("new").click();
 }
 	</script>
 <style type="text/css">
