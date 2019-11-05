@@ -1,4 +1,4 @@
 Flask
 gunicorn
 postgres
-request
+requests
