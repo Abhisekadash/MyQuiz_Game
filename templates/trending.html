@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		p.a1{
+			font-size: 20px;
+			font-style: italic;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+{%for x,y in ob1.items():%}
+	<b><p class="a1">{% print(x)%}</p> : <p class="a1">{% print(y) %}</p><br></b>
+	{%print('\n')%}
+	{% endfor %}
+</body>
+</html>

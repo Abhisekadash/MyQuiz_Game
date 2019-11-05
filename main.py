@@ -11,6 +11,7 @@ import Database1
 import time
 import pdb
 import os
+import html_wrapper
 
 #This is to start the main aplication
 app=Flask(__name__)
@@ -105,6 +106,7 @@ def end(i,score):
 def score1(i,score):
 	score=score+1
 	return redirect(url_for('showquest',i=i,score=score))
+
 # This function receive the question from user.  
 @app.route('/question1',methods=['POST'])
 def question():
@@ -126,7 +128,24 @@ def question():
 			return "<p style='font-size:30px'>Insert a correct data.</p>"
 	except:
 		return "<p style='font-size:40px'>Insert a full content</p>"
-	'''
+@app.route('/about')
+def about():
+	return render_template('About.html')
+@app.route('/footer')
+def footer():
+	return render_template('Footer.html')
+# Trending of java, python,Ruby.
+@app.route('/trending',methods=['POST'])
+def trending():
+	option_text=request.form['trending']
+	m=(option_text).split()
+	language=str(m[0])
+	limit=int(m[1])
+	line_of_text=html_wrapper.Html_wrapper().find_text(language,limit)
+	ob1=html_wrapper.Html_wrapper().print_proper(line_of_text)
+	print(ob1)
+	return render_template('trending.html',ob1=ob1)
+'''
 To create a sign up UI for user.
 
 This will store the user info for short time.
