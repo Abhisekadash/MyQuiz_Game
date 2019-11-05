@@ -1,4 +1,4 @@
-from flask import requests
+import requests
 from bs4 import BeautifulSoup
 import argparse
 class Html_wrapper:
