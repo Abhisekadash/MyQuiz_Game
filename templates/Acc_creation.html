@@ -9,9 +9,55 @@
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 		}
+		.body{
+			width: 50%;
+		}
+		.heading{
+			margin: auto;
+			width: 100%;
+			height: 60px;
+			background-color: black;
+		}
+		.hleft{
+			margin: auto;
+			float: left;
+			padding: 1.2%;
+			margin-left: 10px;
+			margin-top: 5px;
+			width: 70px;
+		}
+		.hright{
+			margin: auto;
+			padding: 1.2%;
+			float: right;
+			margin-top: 5px;
+			margin-right: 10px;
+			width: 70px;
+		}
+		a:hover{
+			background-color: green;
+		}
+		a{
+			font-size:20px;
+			text-decoration: none;
+			text-shadow: 8px 8px 8px black;
+		}
+		.hle{
+			margin: auto;
+			float: left;
+			padding: 0.4%;
+		}
 	</style>
 </head>
 <body>
+	<div class="heading">
+		<a href="{{url_for('quest')}}" class="hle"><img src="/static/images/game-logo.png" style="width: 120px;height: 50px;"></a>
+		<a href="{{url_for('starting')}}" class="hleft"><b>Test</b></a>
+		<a href="{{url_for('main_page2')}}" class="hleft"><b>Upload</b></a>
+		<a href="{{url_for('creation')}}" class="hright"><b>SignUp</b></a>
+		<a href="{{url_for('login')}}" class="hright"><b>Login</b></a>
+	</div>
+	<div class="body">
 	<form action="/create" method="POST">
        <div><img src="static\images\game-logo.png" style="background-color: brown">
 		<h2>Sign Up</h2>
@@ -25,6 +71,6 @@
 		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" style="margin-bottom: 50px">
 	</div>
 </form>
-
+</div>
 </body>
 </html>

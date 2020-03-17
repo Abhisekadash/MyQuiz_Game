@@ -67,3 +67,21 @@ def showquest(i):
 		return mylist[i]
 	else:
 		return 0
+# To login to the website.
+def show(email,password):
+	conn,mycursor=get_connection_and_cursor()
+	mycursor.execute('select email,password from account')
+	mylist=mycursor.fetchall()
+	for x in range(len(mylist)):
+		if mylist[x][0]==email and mylist[x][1]==password:
+			return True
+# To check duplicate.
+def check_duplicate(email):
+	conn,mycursor=get_connection_and_cursor()
+	mycursor.execute('select email from account')
+	mylist=mycursor.fetchall()
+	for x in range(len(mylist)):
+		if email == mylist[x][0]:
+			return False
+	else:
+		return  True

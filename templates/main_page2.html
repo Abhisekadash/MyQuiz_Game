@@ -6,22 +6,66 @@
 			float: right;
 			margin-bottom: 40px;
 		}
-		body{
-			background-image: url('static/images/body1.jpg');
-		}
-		div.d2{
-			
-			margin: 30px;
+		
+		.d2{
+			margin: auto;
+			margin-left: 2%;
+			width: 50%;
 			padding: 20px;
 			background-color: #f2f2f2;
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			margin-top: 10px;
 		}
-		
-
+		.trending{
+			margin: auto;
+			width: 30%;
+			margin-left: 20px;
+			height: auto;
+		}
+		.heading{
+			margin: auto;
+			width: 100%;
+			height: 60px;
+			background-color: black;
+		}
+		.hleft{
+			margin: auto;
+			float: left;
+			padding: 1.2%;
+			margin-left: 10px;
+			margin-top: 5px;
+			width: 70px;
+		}
+		.hright{
+			margin: auto;
+			padding: 1.2%;
+			float: right;
+			margin-top: 5px;
+			margin-right: 10px;
+			width: 70px;
+		}
+		a:hover{
+			background-color: green;
+		}
+		a{
+			font-size:20px;
+			text-decoration: none;
+			text-shadow: 8px 8px 8px black;
+		}
+		.hle{
+			margin: auto;
+			float: left;
+			padding: 0.4%;
+		}
 	</style>
 </head>
 <body>
-	
+	<div class="heading">
+		<a href="{{url_for('quest')}}" class="hle"><img src="/static/images/game-logo.png" style="width: 120px;height: 50px;"></a>
+		<a href="{{url_for('starting')}}" class="hleft"><b>Test</b></a>
+		<a href="{{url_for('main_page2')}}" class="hleft"><b>Upload</b></a>
+		<a href="{{url_for('logout')}}" class="hright"><b>Logout</b></a>
+	</div>
 <div class="d2">
 	<form action="/question1" method="POST">	
 		<b style="margin-bottom: 10px;">To upload questions</b><br>
@@ -46,7 +90,8 @@
 		<input type="submit" name="import">
 </form>
 </div>
-<b><p style="font-style: italic;color: white;">You want to check out daily trending repositary ?</p></b>
+<div class="trending">
+<b><p style="font-style: italic;color: black;">You want to check out daily trending repositary ?</p></b>
 <form action="/trending" method="POST">
 <select name="trending">
   <option value="Java 5">Java 5</option>
@@ -61,5 +106,6 @@
 </select>
 <input type="submit" value="Submit">
 </form>
+</div>
 </body>
 </html>

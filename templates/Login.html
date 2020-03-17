@@ -9,29 +9,74 @@
 			margin-left: 20px;
 			margin-top: 40px;
 		}
-		div{
-			margin: 20px;
-			width: 60%;
+		.log{
+			margin: auto;
+			width: 40%;
 			height: 300px;
 			padding: 20px;
+			margin-top: 10px;
+			float: center;
 			background-color: #f2f2f2;
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		}
-		p.p2,a{
-			font-size: 15px;
-			margin-left: 20px
+		p.p2{
+			margin: auto;
+			height: auto;
+			width: 40%;
+			float: center;
+			}
+		.heading{
+			margin: auto;
+			width: 100%;
+			height: 60px;
+			background-color: black;
+		}
+		.hleft{
+			margin: auto;
+			float: left;
+			padding: 1.2%;
+			margin-left: 10px;
+			margin-top: 5px;
+			width: 70px;
+		}
+		.hright{
+			margin: auto;
+			padding: 1.2%;
+			float: right;
+			margin-top: 5px;
+			margin-right: 10px;
+			width: 70px;
+		}
+		a:hover{
+			background-color: green;
+		}
+		a{
+			font-size:20px;
+			text-decoration: none;
+			text-shadow: 8px 8px 8px black;
+		}
+		.hle{
+			margin: auto;
+			float: left;
+			padding: 0.4%;
 		}
 	</style>
 </head>
 <body>
-	<div>
+	<div class="heading">
+		<a href="{{url_for('quest')}}" class="hle"><img src="/static/images/game-logo.png" style="width: 120px;height: 50px;"></a>
+		<a href="{{url_for('starting')}}" class="hleft"><b>Test</b></a>
+		<a href="{{url_for('main_page2')}}" class="hleft"><b>Upload</b></a>
+	</div>
+	<div class="log">
 		<p class="p1">Login</p>
-		<form action="/login" method="POST">
+		<b style="color: red;margin-left: 30px;">{%print(error)%}</b>
+		<form action="/auth" method="POST">
 			Email ID:
 			<input type="email" name="email"><br><br>
 			Password:
 			<input type="password" name="password"><br><br>
-			<input type="submit">
+			<input type="submit" value="Login">
 		</form>
 	</div>
 	

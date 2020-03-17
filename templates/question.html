@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Question</title>
+	<script type="text/javascript">
+	function show(m){
+		var x = document.getElementById("Ans"+m);
+		if (x.style.display == "none") {
+    		x.style.display = "block";	
+  		} 
+  		else {
+  			x.style.display = "none";
+  		}
+	}
+		function checkiter(m,Ans){
+	var  z=document.getElementById('Ans'+Ans).innerHTML;
+	var x=document.getElementById("color"+Ans);
+	if(m == z){
+			document.getElementById("color"+Ans).innerHTML="Correct Answer";
+			x.style.color="green";
+			show(Ans)
+			
+	}
+	else{
+		document.getElementById("color"+Ans).innerHTML="Wrong Answer";
+		x.style.color="red";
+		show(Ans)
+	}
+}
+	</script>
+	<style type="text/css">
+		.quest{
+		width: 50%;
+		padding: 2%;
+		margin:auto;
+		float: center;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		margin-top: 10px;
+		}
+		td{
+			width: 200px;
+		}
+		.heading{
+			margin: auto;
+			width: 100%;
+			height: 60px;
+			background-color: black;
+		}
+		.hleft{
+			margin: auto;
+			float: left;
+			padding: 1.2%;
+			margin-left: 10px;
+			margin-top: 5px;
+			width: 70px;
+		}
+		.hright{
+			margin: auto;
+			padding: 1.2%;
+			float: right;
+			margin-top: 5px;
+			margin-right: 10px;
+			width: 70px;
+		}
+		a:hover{
+			background-color: green;
+		}
+		a{
+			font-size:20px;
+			text-decoration: none;
+			text-shadow: 8px 8px 8px black;
+		}
+		.hle{
+			margin: auto;
+			float: left;
+			padding: 0.4%;
+		}
+	</style>
+</head>
+<body>
+	<div class="heading">
+		<a href="{{url_for('quest')}}" class="hle"><img src="/static/images/game-logo.png" style="width: 120px;height: 50px;"></a>
+		<a href="{{url_for('starting')}}" class="hleft"><b>Test</b></a>
+		<a href="{{url_for('main_page2')}}" class="hleft"><b>Upload</b></a>
+		<a href="{{url_for('creation')}}" class="hright"><b>SignUp</b></a>
+		<a href="{{url_for('login')}}" class="hright"><b>Login</b></a>
+	</div>
+	<div class="quest">
+		{%for y in questions:%}
+				<p>Q.   {% print(y[1]) %}</p>
+	<table>
+	<tr>
+		<td><p class="p2" onclick="checkiter('{{y[2]}}','{{y[6]}}')" id='b'>1. {% print(y[2]) %}</p></td>
+		<td><p class="p3" onclick="checkiter('{{y[3]}}','{{y[6]}}')"id='c'>2. {% print(y[3]) %}</p></td>
+	</tr>
+	<tr>
+		<td><p class="p4" onclick="checkiter('{{y[4]}}','{{y[6]}}')" id='d'>3. {% print(y[4]) %}</p></td>
+		<td><p class="p5" onclick="checkiter('{{y[5]}}','{{y[6]}}')" id="e" >4. {% print(y[5]) %}</p></td>
+	</tr>
+</table>
+<button onclick="show('{{y[6]}}')"><b>Answer</b></button>
+<p id="color{{y[6]}}"></p>
+Ans:-<p id="Ans{{y[6]}}" style="display: none;">{% print(y[6]) %}</p>
+<hr>
+{%endfor%}
+</div>
+</body>
+</html>
