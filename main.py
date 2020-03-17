@@ -26,9 +26,7 @@ def heading():
 def quest():
 	questions=Database1.display_quest()
 	return render_template('question.html',questions=questions)
-@app.route('/main_page')
-def main_page():
-	return render_template('main_page.html')
+
 # It will show a main_page2 html page 
 # Which will show the question page.
 @app.route('/main_page2')
@@ -36,7 +34,7 @@ def main_page2():
 	if 'email' in session:
 		return render_template('main_page2.html')
 	else:
-		return render_template('login.html',error='Login First')
+		return render_template('Login.html',error='Login First')
 def increquest():
 	i=0
 	score=0
@@ -68,7 +66,7 @@ def fileupload():
 				return f"<p style='font-size:30px'>Missing parameter in line {x}</p>"
 		return redirect('/main_page2')
 	else:
-		return render_template('login.html',error='Login First')
+		return render_template('Login.html',error='Login First')
 	
 #It is the starting page of the application.
 @app.route('/starting')
@@ -77,7 +75,7 @@ def starting():
 		i,score=increquest()
 		return render_template('starting_page.html',i=i,score=score)
 	else:
-		return render_template('login.html',error="Login First")
+		return render_template('Login.html',error="Login First")
 '''
 This part is to show question and record the response.
 	process the response and show the score.
@@ -141,7 +139,7 @@ def question1():
 		except:
 			return "<p style='font-size:40px'>Insert a full content</p>"
 	else:
-		return render_template('login.html',error="Login First.")
+		return render_template('Login.html',error="Login First.")
 
 @app.route('/about')
 def about():
@@ -185,7 +183,7 @@ def create():
 #To login
 @app.route('/login')
 def login():
-	return render_template('login.html')
+	return render_template('Login.html')
 @app.route('/auth',methods=['POST'])
 def auth():
 	email=request.form['email']
@@ -197,7 +195,7 @@ def auth():
 		os.mkdir(os.path.join(os.getcwd(),'static',email))
 		return redirect('/starting')
 	else:
-		return render_template('main.html',error='Incorrect email or Password')
+		return render_template('Login.html',error='Incorrect email or Password')
 @app.route('/logout')
 def logout():
 	# To check whether the email is exist in session or not. 
@@ -205,9 +203,9 @@ def logout():
 		# To logout pop the email from session.
 		session.pop('email')
 		
-		return render_template('main.html',error='You logged out of this account.')
+		return render_template('Login.html',error='You logged out of this account.')
 	else:
-		return render_template('main.html',error="Login First.") 
+		return render_template('Login.html',error="Login First.") 
 
 currentdirec=os.getcwd()
 fileloc=os.getcwd()
