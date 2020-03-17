@@ -24,7 +24,7 @@ def heading():
 	# Main_page to show html page to show question to users.
 @app.route('/')
 def quest():
-	questions=Database1.display_quest()
+	questions=Database1.question()
 	return render_template('question.html',questions=questions)
 
 # It will show a main_page2 html page 

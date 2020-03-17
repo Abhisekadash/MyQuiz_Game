@@ -60,6 +60,9 @@ def display_quest():
 
 mylist=display_quest()
 random.shuffle(mylist)
+def question():
+	global mylist
+	return mylist
 
 def showquest(i):
 	global mylist
