@@ -2,7 +2,7 @@
 
 This is the main python server application.
 
-This is to store the user account and quiz_game's quiz.
+This is to store the user account and quiz_game's quiz .
 
 '''
 from flask import *
