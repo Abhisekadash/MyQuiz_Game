@@ -192,7 +192,6 @@ def auth():
 	if Database1.show(email,password)==True:
 		#To create session object.
 		session['email']=request.form['email']
-		os.mkdir(os.path.join(os.getcwd(),'static',email))
 		return redirect('/starting')
 	else:
 		return render_template('Login.html',error='Incorrect email or Password')
